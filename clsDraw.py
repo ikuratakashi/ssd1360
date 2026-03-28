@@ -5,16 +5,16 @@ from adafruit_ssd1306 import SSD1306_I2C
 class DrawMode(Enum):
     Draw = 1
     '''描画モード'''
-    Erase = -1
+    Erase = 0
     '''消去モード'''
 
 class clsDraw:
     def __init__(self,display: SSD1306_I2C):
-        self.list = [clsLineData]
+        self.list: list[clsLineData] = []
         self.display: SSD1306_I2C | None = display
 
-    def addLine(self, x1, x2, y1, y2, color):
-        self.list.append(clsLineData(x1, x2, y1, y2, color))
+    def addLine(self, x1, y1, x2, y2, color):
+        self.list.append(clsLineData(x1, y1, x2, y2, color))
 
     def draw(self, DrawMode : DrawMode,offsetX = 0, offsetY = 0):
         for line in self.list:
