@@ -45,6 +45,9 @@ def FaceNomalEyeCloseDraw(pDrawMode : DrawMode = DrawMode.Draw):
 
     Draw.draw(pDrawMode)
 
+def Show():
+    DISPLAY.show()
+
 def main():
 
     # I2Cを初期化
@@ -57,18 +60,27 @@ def main():
     sleep(1)
 
     FaceNomalDraw(DrawMode.Draw)
-    sleep(2)
+    Show()
+
     FaceNomalEyeDraw(DrawMode.Erase)
     FaceNomalEyeCloseDraw(DrawMode.Draw)
-    sleep(0.001)
+    sleep(2)
+    Show()
+
     FaceNomalEyeCloseDraw(DrawMode.Erase)
     FaceNomalEyeDraw(DrawMode.Draw)
-    sleep(2)
+    sleep(0.01)
+    Show()
+
     FaceNomalEyeDraw(DrawMode.Erase)
     FaceNomalEyeCloseDraw(DrawMode.Draw)
-    sleep(0.001)
+    sleep(2)
+    Show()
+
     FaceNomalEyeCloseDraw(DrawMode.Erase)
     FaceNomalEyeDraw(DrawMode.Draw)
+    sleep(0.01)
+    Show()
 
 
 if __name__ == "__main__":

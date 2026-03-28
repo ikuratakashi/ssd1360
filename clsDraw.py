@@ -26,5 +26,5 @@ class clsDraw:
                 # 消去モード
                 self.display.line(line.x1 + offsetX, line.y1 + offsetY, line.x2 + offsetX, line.y2 + offsetY, 0)
                 #print("erase")
-        self.display.show()
+        #self.display.show()
 
