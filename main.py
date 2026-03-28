@@ -23,6 +23,17 @@ def FaceNomalDraw(pDrawMode : DrawMode = DrawMode.Draw):
 
     Draw.draw(pDrawMode)
 
+def FaceNomalEyeDraw(pDrawMode : DrawMode = DrawMode.Draw):
+
+    face = clsFace()
+    bufs = face.NormalEye()
+    Draw = clsDraw(DISPLAY)
+
+    for buf in bufs:
+        Draw.addLine(buf[0], buf[1], buf[2], buf[3], buf[4])
+
+    Draw.draw(pDrawMode)
+
 def FaceNomalEyeCloseDraw(pDrawMode : DrawMode = DrawMode.Draw):
 
     face = clsFace()
@@ -47,17 +58,17 @@ def main():
 
     FaceNomalDraw(DrawMode.Draw)
     sleep(2)
-    FaceNomalDraw(DrawMode.Erase)
+    FaceNomalEyeDraw(DrawMode.Erase)
     FaceNomalEyeCloseDraw(DrawMode.Draw)
-    sleep(0.2)
+    sleep(0.1)
     FaceNomalEyeCloseDraw(DrawMode.Erase)
-    FaceNomalDraw(DrawMode.Draw)
+    FaceNomalEyeDraw(DrawMode.Draw)
     sleep(2)
-    FaceNomalDraw(DrawMode.Erase)
+    FaceNomalEyeDraw(DrawMode.Erase)
     FaceNomalEyeCloseDraw(DrawMode.Draw)
     sleep(0.2)
     FaceNomalEyeCloseDraw(DrawMode.Erase)
-    FaceNomalDraw(DrawMode.Draw)
+    FaceNomalEyeDraw(DrawMode.Draw)
 
 
 if __name__ == "__main__":
