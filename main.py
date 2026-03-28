@@ -60,14 +60,14 @@ def FaceNomalEyeOpenCloseDraws():
 
         FaceNomalEyeDraw(DrawMode.Erase)
         FaceNomalEyeCloseDraw(DrawMode.Draw)
-        sleep(0.01)
         Show()
+        sleep(0.01)
 
         FaceNomalEyeCloseDraw(DrawMode.Erase)
         FaceNomalEyeDraw(DrawMode.Draw)
+        Show()
         EyeOpenTime = random.randint(1, 3)
         sleep(EyeOpenTime)
-        Show()
 
 
 def Show():
@@ -77,9 +77,9 @@ def main():
 
     try:
 
-        LOG.info("■" * 20)
+        LOG.info("=" * 20)
         LOG.info("Starting the application...")
-        LOG.info("■" * 20)
+        LOG.info("=" * 20)
 
         # I2Cを初期化
         i2c = busio.I2C(board.SCL, board.SDA)
