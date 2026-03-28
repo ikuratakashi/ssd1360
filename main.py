@@ -43,12 +43,16 @@ def main():
     display.fill(0)  # 画面をクリア
     display.show()
 
+    sleep(1)
+
     FaceNomalDraw(DrawMode.Draw)
     sleep(1)
     FaceNomalDraw(DrawMode.Erase)
+    sleep(1)
     FaceNomalEyeCloseDraw(DrawMode.Draw)
     sleep(1)
     FaceNomalEyeCloseDraw(DrawMode.Erase)
+    sleep(1)
     FaceNomalDraw(DrawMode.Draw)
 
 
