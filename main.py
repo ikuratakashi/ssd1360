@@ -21,7 +21,7 @@ def FaceNomalDraw(pDrawMode : DrawMode = DrawMode.Draw):
     for buf in bufs:
         Draw.addLine(buf[0], buf[1], buf[2], buf[3], buf[4])
 
-    Draw.draw(pDrawMode.Draw)
+    Draw.draw(pDrawMode)
 
 def FaceNomalEyeCloseDraw(pDrawMode : DrawMode = DrawMode.Draw):
 
