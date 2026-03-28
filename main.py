@@ -46,13 +46,17 @@ def main():
     sleep(1)
 
     FaceNomalDraw(DrawMode.Draw)
-    sleep(1)
+    sleep(2)
     FaceNomalDraw(DrawMode.Erase)
-    sleep(1)
     FaceNomalEyeCloseDraw(DrawMode.Draw)
-    sleep(1)
+    sleep(0.2)
     FaceNomalEyeCloseDraw(DrawMode.Erase)
-    sleep(1)
+    FaceNomalDraw(DrawMode.Draw)
+    sleep(2)
+    FaceNomalDraw(DrawMode.Erase)
+    FaceNomalEyeCloseDraw(DrawMode.Draw)
+    sleep(0.2)
+    FaceNomalEyeCloseDraw(DrawMode.Erase)
     FaceNomalDraw(DrawMode.Draw)
 
 

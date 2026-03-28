@@ -21,10 +21,10 @@ class clsDraw:
             if pDrawMode == DrawMode.Draw:
                 # 描画モード
                 self.display.line(line.x1 + offsetX, line.y1 + offsetY, line.x2 + offsetX, line.y2 + offsetY, 1)
-                print("draw")
+                #print("draw")
             elif pDrawMode == DrawMode.Erase:
                 # 消去モード
                 self.display.line(line.x1 + offsetX, line.y1 + offsetY, line.x2 + offsetX, line.y2 + offsetY, 0)
-                print("erase")
+                #print("erase")
         self.display.show()
 
