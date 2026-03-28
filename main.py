@@ -2,27 +2,37 @@
 import board
 import busio
 from adafruit_ssd1306 import SSD1306_I2C
+from clsFace import clsFace
+from clsLineData import clsLineData
+from clsDraw import clsDraw, DrawMode
 
-# I2Cを初期化
-i2c = busio.I2C(board.SCL, board.SDA)
-display = SSD1306_I2C(128, 64, i2c, addr=0x3C)
 
-display.fill(0)  # 画面をクリア
-# 横線 (x0, y0, x1, y1)
-display.line(0, 10, 127, 10, 1)
-display.line(0, 12, 126, 12, 1)
-# 縦線
-display.line(64, 0, 64, 63, 1)
-display.line(62, 0, 62, 62, 1)
-# 斜め線
-#display.line(0, 0, 127, 63, 1)
+I2C = busio.I2C(board.SCL, board.SDA)
+DISPLAY = SSD1306_I2C(128, 64, I2C, addr=0x3C)
 
-display.show()
+def FaceNomalDraw():
 
-# 画面を塗りつぶす
-#display.fill(1)
-#display.show()
+    face = clsFace()
+    bufs = face.Normal()
+    Draw = clsDraw(DISPLAY)
 
-# 画面をクリアする
-#display.fill(0)
-#display.show()
+    for buf in bufs:
+        Draw.addLine(buf[0], buf[1], buf[2], buf[3], buf[4])
+
+    Draw.draw(DrawMode=DrawMode.Draw)
+
+def main():
+
+    # I2Cを初期化
+    i2c = busio.I2C(board.SCL, board.SDA)
+    display = SSD1306_I2C(128, 64, i2c, addr=0x3C)
+
+    display.fill(0)  # 画面をクリア
+    display.show()
+
+    FaceNomalDraw()
+
+
+
+if __name__ == "__main__":
+    main()
