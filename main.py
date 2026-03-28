@@ -1,4 +1,6 @@
 #python3
+from time import sleep
+
 import board
 import busio
 from adafruit_ssd1306 import SSD1306_I2C
@@ -10,7 +12,7 @@ from clsDraw import clsDraw, DrawMode
 I2C = busio.I2C(board.SCL, board.SDA)
 DISPLAY = SSD1306_I2C(128, 64, I2C, addr=0x3C)
 
-def FaceNomalDraw():
+def FaceNomalDraw(pDrawMode : DrawMode = DrawMode.Draw):
 
     face = clsFace()
     bufs = face.Normal()
@@ -19,7 +21,18 @@ def FaceNomalDraw():
     for buf in bufs:
         Draw.addLine(buf[0], buf[1], buf[2], buf[3], buf[4])
 
-    Draw.draw(DrawMode=DrawMode.Draw)
+    Draw.draw(pDrawMode.Draw)
+
+def FaceNomalEyeCloseDraw(pDrawMode : DrawMode = DrawMode.Draw):
+
+    face = clsFace()
+    bufs = face.NormalEyeClose()
+    Draw = clsDraw(DISPLAY)
+
+    for buf in bufs:
+        Draw.addLine(buf[0], buf[1], buf[2], buf[3], buf[4])
+
+    Draw.draw(pDrawMode)
 
 def main():
 
@@ -30,8 +43,13 @@ def main():
     display.fill(0)  # 画面をクリア
     display.show()
 
-    FaceNomalDraw()
-
+    FaceNomalDraw(DrawMode.Draw)
+    sleep(1)
+    FaceNomalDraw(DrawMode.Erase)
+    FaceNomalEyeCloseDraw(DrawMode.Draw)
+    sleep(1)
+    FaceNomalEyeCloseDraw(DrawMode.Erase)
+    FaceNomalDraw(DrawMode.Draw)
 
 
 if __name__ == "__main__":
