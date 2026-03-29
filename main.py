@@ -136,6 +136,7 @@ def FaceWowGairoDraws(pDrawFace : enmDrawFace):
     pDrawFace : 描画する顔の方向
     '''
     FaceWowDraw(DrawMode.Draw)
+    Show()
     while STOP_EVENT.is_set() == False:
         pass
     pass
@@ -190,7 +191,6 @@ def main():
                     '''
                     驚いた顔を描画する(ジャイロ方向描画あり)
                     '''
-                    LOG.info(f"DrawFaceMode: {DrawFaceMode}")
                     THRED = threading.Thread(target=FaceWowGairoDraws, args=(DrawFaceMode,))
                     THRED.start()
                     IsDrawThread = True
