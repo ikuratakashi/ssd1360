@@ -37,14 +37,23 @@ def DrawFace(pDrawFace : enmDrawFace = enmDrawFace.Nomal):
     '''
     if pDrawFace == enmDrawFace.Nomal:
         FaceNomalEyeOpenCloseDraws()
+    elif pDrawFace == enmDrawFace.MoveRight or \
+         pDrawFace == enmDrawFace.MoveLeft or \
+         pDrawFace == enmDrawFace.MoveTop or \
+         pDrawFace == enmDrawFace.MoveBottom:
+        FaceWowGairoDraws(pDrawFace)
 
 def CheckDrawFaceMode() ->enmDrawFace:
     '''
     描画モードをチェックする
     '''
-    return enmDrawFace.Nomal
+    result : enmDrawFace = enmDrawFace.MoveLeft
+    return result
 
 def FaceNomalDraw(pDrawMode : DrawMode = DrawMode.Draw):
+    '''
+    通常の顔を描画する
+    '''
 
     face = clsFace()
     bufs = face.Normal()
@@ -56,6 +65,9 @@ def FaceNomalDraw(pDrawMode : DrawMode = DrawMode.Draw):
     Draw.draw(pDrawMode)
 
 def FaceNomalEyeDraw(pDrawMode : DrawMode = DrawMode.Draw):
+    '''
+    通常の顔 目のみを描画する
+    '''
 
     face = clsFace()
     bufs = face.NormalEye()
@@ -67,6 +79,9 @@ def FaceNomalEyeDraw(pDrawMode : DrawMode = DrawMode.Draw):
     Draw.draw(pDrawMode)
 
 def FaceNomalEyeCloseDraw(pDrawMode : DrawMode = DrawMode.Draw):
+    '''
+    通常の顔 目を閉じるを描画する
+    '''
 
     face = clsFace()
     bufs = face.NormalEyeClose()
@@ -78,6 +93,9 @@ def FaceNomalEyeCloseDraw(pDrawMode : DrawMode = DrawMode.Draw):
     Draw.draw(pDrawMode)
 
 def FaceNomalEyeOpenCloseDraws():
+    '''
+    通常の顔 目を開閉する描画をする
+    '''
 
     EyeOpenTime = random.randint(1, 3)
 
@@ -98,6 +116,29 @@ def FaceNomalEyeOpenCloseDraws():
         EyeOpenTime = random.randint(1, 3)
         sleep(EyeOpenTime)
 
+def FaceWowDraw(pDrawMode : DrawMode = DrawMode.Draw):
+    '''
+    驚いた顔を描画する
+    '''
+    face = clsFace()
+    bufs = face.Wow()
+    Draw = clsDraw(DISPLAY)
+
+    for buf in bufs:
+        Draw.addLine(buf[0], buf[1], buf[2], buf[3], buf[4])
+
+    Draw.draw(pDrawMode)
+    pass
+
+def FaceWowGairoDraws(pDrawFace : enmDrawFace):
+    '''
+    驚いた顔を描画する(ジャイロ方向描画あり)
+    pDrawFace : 描画する顔の方向
+    '''
+    FaceWowDraw(DrawMode.Draw)
+    while STOP_EVENT.is_set() == False:
+        pass
+    pass
 
 def Show():
     DISPLAY.show()
@@ -133,8 +174,23 @@ def main():
                 display.show()
 
             if IsDrawThread == False:
+
                 if DrawFaceMode == enmDrawFace.Nomal:
+                    '''
+                    通常の顔を描画する
+                    '''
                     THRED = threading.Thread(target=FaceNomalEyeOpenCloseDraws)
+                    THRED.start()
+                    IsDrawThread = True
+
+                if DrawFaceMode == enmDrawFace.MoveRight or \
+                   DrawFaceMode == enmDrawFace.MoveLeft or \
+                   DrawFaceMode == enmDrawFace.MoveTop or \
+                   DrawFaceMode == enmDrawFace.MoveBottom :
+                    '''
+                    驚いた顔を描画する(ジャイロ方向描画あり)
+                    '''
+                    THRED = threading.Thread(target=FaceWowGairoDraws, args=(DrawFaceMode,))
                     THRED.start()
                     IsDrawThread = True
 

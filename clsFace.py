@@ -16,7 +16,7 @@ class clsFace:
         return result
     
     def NormalEye(self) -> list[clsLineData] :
-        '''目のみ'''
+        '''通常の顔 目のみ'''
 
         result = []
 
@@ -31,7 +31,7 @@ class clsFace:
         return result
     
     def NormalEyeClose(self) -> list[clsLineData] :
-        '''目を閉じる'''
+        '''通常の顔 目を閉じる'''
 
         result = []
 
@@ -42,5 +42,22 @@ class clsFace:
         # 口
         #result.append([53,45,63,51,1])
         #result.append([73,45,63,51,1])
+
+        return result
+    
+    def Wow(self) -> list[clsLineData] :
+        '''驚いた顔'''
+
+        result = []
+
+        # 目
+        result.append([39,9,39,23,1])
+        result.append([87,9,87,23,1])
+        
+        # 口
+        result.append([63,32,58,48,1])
+        result.append([63,32,68,48,1])
+        result.append([58,48,63,51,1])
+        result.append([68,48,63,51,1])
 
         return result
