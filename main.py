@@ -190,6 +190,7 @@ def main():
                     '''
                     驚いた顔を描画する(ジャイロ方向描画あり)
                     '''
+                    LOG.info(f"DrawFaceMode: {DrawFaceMode}")
                     THRED = threading.Thread(target=FaceWowGairoDraws, args=(DrawFaceMode,))
                     THRED.start()
                     IsDrawThread = True
