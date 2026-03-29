@@ -119,6 +119,7 @@ def main():
 
         sleep(1)
         IsDrawThread = False
+        BefDrawFaceMode = enmDrawFace.Nomal
 
         while True:
 
@@ -138,8 +139,6 @@ def main():
                     IsDrawThread = True
 
             BefDrawFaceMode = DrawFaceMode
-
-
 
     except KeyboardInterrupt:
         pass
