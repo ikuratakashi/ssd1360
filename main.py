@@ -85,7 +85,7 @@ def FaceNomalEyeOpenCloseDraws():
     Show()
     sleep(EyeOpenTime)
 
-    while True:
+    while STOP_EVENT.is_set() == False:
 
         FaceNomalEyeDraw(DrawMode.Erase)
         FaceNomalEyeCloseDraw(DrawMode.Draw)
@@ -106,9 +106,9 @@ def main():
 
     try:
 
-        LOG.info("=" * 20)
+        LOG.info("=" * 40)
         LOG.info("Starting the application...")
-        LOG.info("=" * 20)
+        LOG.info("=" * 40)
 
         # I2Cを初期化
         i2c = busio.I2C(board.SCL, board.SDA)
