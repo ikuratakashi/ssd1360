@@ -1,6 +1,9 @@
 #python3
 from time import sleep
 import random
+import threading
+from enum import Enum
+
 
 import board
 import busio
@@ -14,6 +17,32 @@ from clsLog import clslog
 I2C = busio.I2C(board.SCL, board.SDA)
 DISPLAY = SSD1306_I2C(128, 64, I2C, addr=0x3C)
 LOG = clslog()
+STOP_EVENT = threading.Event()
+THRED = threading.Thread()
+
+class enmDrawFace(Enum):
+    Nomal = 1
+    MoveRight = 2
+    MoveLeft = 3
+    MoveTop = 4
+    MoveBottom = 5
+    MoveExRight = 6
+    MoveExLeft = 7
+    MoveExTop = 8
+    MoveExBottom = 9
+
+def DrawFace(pDrawFace : enmDrawFace = enmDrawFace.Nomal):
+    '''
+    顔を描画する
+    '''
+    if pDrawFace == enmDrawFace.Nomal:
+        FaceNomalEyeOpenCloseDraws()
+
+def CheckDrawFaceMode() ->enmDrawFace:
+    '''
+    描画モードをチェックする
+    '''
+    return enmDrawFace.Nomal
 
 def FaceNomalDraw(pDrawMode : DrawMode = DrawMode.Draw):
 
@@ -89,14 +118,36 @@ def main():
         display.show()
 
         sleep(1)
+        IsDrawThread = False
 
-        FaceNomalEyeOpenCloseDraws()
+        while True:
+
+            DrawFaceMode = CheckDrawFaceMode()
+
+            if DrawFaceMode != BefDrawFaceMode and IsDrawThread == True:
+                STOP_EVENT.set()
+                THRED.join()
+                IsDrawThread = False
+                display.fill(0)
+                display.show()
+
+            if IsDrawThread == False:
+                if DrawFaceMode == enmDrawFace.Nomal:
+                    THRED = threading.Thread(target=FaceNomalEyeOpenCloseDraws)
+                    THRED.start()
+                    IsDrawThread = True
+
+            BefDrawFaceMode = DrawFaceMode
+
+
 
     except KeyboardInterrupt:
         pass
     finally:
         display.fill(0)  # 画面をクリア
         display.show()
+        STOP_EVENT.set()
+        THRED.join()
 
 if __name__ == "__main__":
 
