@@ -203,8 +203,8 @@ def main():
                     IsDrawThread = True
 
             BefDrawFaceMode = DrawFaceMode
-            
-            sleep(5)
+
+            sleep(3)
 
     except KeyboardInterrupt:
         pass
