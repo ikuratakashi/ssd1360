@@ -48,6 +48,13 @@ def CheckDrawFaceMode() ->enmDrawFace:
     描画モードをチェックする
     '''
     result : enmDrawFace = enmDrawFace.MoveLeft
+
+    FaceNo = random.randint(1, 2)
+    if FaceNo == 1:
+        result = enmDrawFace.Nomal
+    elif FaceNo == 2:
+        result = random.choice([enmDrawFace.MoveRight, enmDrawFace.MoveLeft, enmDrawFace.MoveTop, enmDrawFace.MoveBottom])
+
     return result
 
 def FaceNomalDraw(pDrawMode : DrawMode = DrawMode.Draw):
@@ -196,6 +203,8 @@ def main():
                     IsDrawThread = True
 
             BefDrawFaceMode = DrawFaceMode
+            
+            sleep(5)
 
     except KeyboardInterrupt:
         pass
