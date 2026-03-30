@@ -104,6 +104,8 @@ def FaceNomalEyeOpenCloseDraws():
     通常の顔 目を開閉する描画をする
     '''
 
+    DISPLAY.fill(0)
+
     EyeOpenTime = random.randint(1, 3)
 
     FaceNomalDraw(DrawMode.Draw)
@@ -120,7 +122,10 @@ def FaceNomalEyeOpenCloseDraws():
         FaceNomalEyeCloseDraw(DrawMode.Erase)
         FaceNomalEyeDraw(DrawMode.Draw)
         Show()
+
         EyeOpenTime = random.randint(1, 3)
+        if STOP_EVENT.is_set() == True:
+            break
         sleep(EyeOpenTime)
 
 def FaceWowDraw(pDrawMode : DrawMode = DrawMode.Draw):
@@ -142,6 +147,8 @@ def FaceWowGairoDraws(pDrawFace : enmDrawFace):
     驚いた顔を描画する(ジャイロ方向描画あり)
     pDrawFace : 描画する顔の方向
     '''
+    DISPLAY.fill(0)
+    
     FaceWowDraw(DrawMode.Draw)
     Show()
     while STOP_EVENT.is_set() == False:
@@ -159,12 +166,8 @@ def main():
         LOG.info("Starting the application...")
         LOG.info("=" * 40)
 
-        # I2Cを初期化
-        i2c = busio.I2C(board.SCL, board.SDA)
-        display = SSD1306_I2C(128, 64, i2c, addr=0x3C)
-
-        display.fill(0)  # 画面をクリア
-        display.show()
+        DISPLAY.fill(0)  # 画面をクリア
+        DISPLAY.show()
 
         sleep(1)
         IsDrawThread = False
@@ -180,8 +183,6 @@ def main():
                 STOP_EVENT.set()
                 THRED.join()
                 IsDrawThread = False
-                display.fill(0)
-                display.show()
                 LOG.debug(f"スレッド停止")
 
             if IsDrawThread == False:
