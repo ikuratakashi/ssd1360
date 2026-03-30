@@ -3,7 +3,7 @@ from time import sleep
 import random
 import threading
 from enum import Enum
-
+import math
 
 import board
 import busio
@@ -12,7 +12,7 @@ from clsFace import clsFace
 from clsLineData import clsLineData
 from clsDraw import clsDraw, DrawMode
 from clsLog import clslog
-
+from clsMoveDegPoint import clsMoveDegPoint
 
 I2C = busio.I2C(board.SCL, board.SDA)
 DISPLAY = SSD1306_I2C(128, 64, I2C, addr=0x3C)
@@ -150,10 +150,22 @@ def FaceWowGairoDraws(pDrawFace : enmDrawFace):
     DISPLAY.fill(0)
     
     FaceWowDraw(DrawMode.Draw)
-    Show()
+
+    Xmax = 173
+    Ymax = 63
+    MoveDegPoints:list[clsMoveDegPoint]  = []
+    MoveDegPoints.append(clsMoveDegPoint(disp=DISPLAY,xmax=Xmax, ymax=Ymax, st_x=63, st_y=31, deg=180, distance=1))
+
     while STOP_EVENT.is_set() == False:
+        
+        for MoveDegPoint in MoveDegPoints:
+            MoveDegPoint.MovePointDraw()
+
+        Show()
+        sleep(0.1)
         pass
     pass
+
 
 def Show():
     DISPLAY.show()
