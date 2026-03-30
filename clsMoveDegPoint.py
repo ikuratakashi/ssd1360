@@ -31,7 +31,7 @@ class clsMoveDegPoint:
             self.y = int(self.y)
 
             if(self.x > self.xmax or self.y > self.ymax or self.x < 0 or self.y < 0):
-                self.x = self.st_x
+                self.x = 0
                 self.y = self.st_y
 
             self.MovePointErase()

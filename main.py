@@ -159,7 +159,7 @@ def FaceWowGairoDraws(pDrawFace : enmDrawFace):
     if pDrawFace == enmDrawFace.MoveRight:
         for x in range(11):
             for y in range(6):
-                MoveDegPoints.append(clsMoveDegPoint(disp=DISPLAY,xmax=Xmax, ymax=Ymax, st_x=x * 17 + 1, st_y= y * 12 + 1, deg=45, distance=3,Log=LOG))
+                MoveDegPoints.append(clsMoveDegPoint(disp=DISPLAY,xmax=Xmax, ymax=Ymax, st_x=x * 17 + 1, st_y= y * 12 + 1, deg=0, distance=3,Log=LOG))
 
     while STOP_EVENT.is_set() == False:
         
