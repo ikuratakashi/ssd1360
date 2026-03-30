@@ -55,7 +55,7 @@ def CheckDrawFaceMode() ->enmDrawFace:
     elif FaceNo == 2:
         result = random.choice([enmDrawFace.MoveRight, enmDrawFace.MoveLeft, enmDrawFace.MoveTop, enmDrawFace.MoveBottom])
 
-    result = enmDrawFace.MoveRight
+    #result = enmDrawFace.MoveRight
 
     return result
 
@@ -178,7 +178,7 @@ def FaceWowGairoDraws(pDrawFace : enmDrawFace):
 
         Show()
 
-        #sleep(0.001)
+        sleep(0.001)
 
         pass
     pass
