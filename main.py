@@ -112,6 +112,8 @@ def FaceNomalEyeOpenCloseDraws():
     Show()
     sleep(EyeOpenTime)
 
+    LOG.debug(f"STOP_EVENT.is_set() : {STOP_EVENT.is_set()}")
+
     while STOP_EVENT.is_set() == False:
 
         LOG.debug(f"EyeOpenCloseDraws Loop")
