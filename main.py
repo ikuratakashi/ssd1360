@@ -157,8 +157,9 @@ def FaceWowGairoDraws(pDrawFace : enmDrawFace):
     Ymax = 63
     MoveDegPoints:list[clsMoveDegPoint]  = []
     if pDrawFace == enmDrawFace.MoveRight:
-        for i in range(5):
-            MoveDegPoints.append(clsMoveDegPoint(disp=DISPLAY,xmax=Xmax, ymax=Ymax, st_x=0, st_y= i * 12 + 1, deg=0, distance=3,Log=LOG))
+        for x in range(11):
+            for y in range(6):
+                MoveDegPoints.append(clsMoveDegPoint(disp=DISPLAY,xmax=Xmax, ymax=Ymax, st_x=x * 17 + 1, st_y= y * 12 + 1, deg=0, distance=3,Log=LOG))
 
     while STOP_EVENT.is_set() == False:
         
