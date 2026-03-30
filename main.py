@@ -114,6 +114,8 @@ def FaceNomalEyeOpenCloseDraws():
 
     while STOP_EVENT.is_set() == False:
 
+        LOG.debug(f"EyeOpenCloseDraws Loop")
+
         FaceNomalEyeDraw(DrawMode.Erase)
         FaceNomalEyeCloseDraw(DrawMode.Draw)
         Show()
@@ -213,8 +215,8 @@ def main():
     except KeyboardInterrupt:
         pass
     finally:
-        display.fill(0)  # 画面をクリア
-        display.show()
+        DISPLAY.fill(0)  # 画面をクリア
+        DISPLAY.show()
         STOP_EVENT.set()
         THRED.join()
 
