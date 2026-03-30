@@ -1,9 +1,10 @@
 import math
 from adafruit_ssd1306 import SSD1306_I2C
 from clsDraw import DrawMode
+from clsLog import clslog
 
 class clsMoveDegPoint:
-    def __init__(self,disp : SSD1306_I2C, st_x, st_y, deg ,distance ,xmax = 127, ymax = 63):
+    def __init__(self,disp : SSD1306_I2C, st_x, st_y, deg ,distance ,xmax = 127, ymax = 63,Log: clslog = None):
         self.disp: SSD1306_I2C = disp
         self.xmax = xmax
         self.ymax = ymax
@@ -16,6 +17,7 @@ class clsMoveDegPoint:
         self.deg = deg
         self.distance = distance
         self.IsFirst = True
+        self.LOG = Log
 
     def MovePointDraw(self):
 
@@ -29,6 +31,9 @@ class clsMoveDegPoint:
             self.y = int(self.y)
 
             if(self.x > self.xmax or self.y > self.ymax):
+                
+                self.LOG.debug(f"clear xy")
+                
                 self.x = self.st_x
                 self.y = self.st_y
 
