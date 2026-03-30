@@ -164,7 +164,7 @@ def FaceWowGairoDraws(pDrawFace : enmDrawFace):
             MoveDegPoint.MovePointDraw()
 
         Show()
-        sleep(0.1)
+        sleep(0.01)
         pass
     pass
 
