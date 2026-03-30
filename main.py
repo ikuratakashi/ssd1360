@@ -145,7 +145,7 @@ def FaceWowDraw(pDrawMode : DrawMode = DrawMode.Draw):
 def FaceWowGairoDraws(pDrawFace : enmDrawFace):
     '''
     驚いた顔を描画する(ジャイロ方向描画あり)
-    pDrawFace : 描画する顔の方向
+    pDrawFace : 描画する顔の方向 
     '''
     DISPLAY.fill(0)
     
