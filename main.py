@@ -112,11 +112,7 @@ def FaceNomalEyeOpenCloseDraws():
     Show()
     sleep(EyeOpenTime)
 
-    LOG.debug(f"STOP_EVENT.is_set() : {STOP_EVENT.is_set()}")
-
     while STOP_EVENT.is_set() == False:
-
-        LOG.debug(f"EyeOpenCloseDraws Loop")
 
         FaceNomalEyeDraw(DrawMode.Erase)
         FaceNomalEyeCloseDraw(DrawMode.Draw)
@@ -185,9 +181,9 @@ def main():
 
             if DrawFaceMode != BefDrawFaceMode and IsDrawThread == True:
                 STOP_EVENT.set()
-                THRED.join()
+                THRED.join() # スレッドの終了を待つ
+                STOP_EVENT.clear()
                 IsDrawThread = False
-                LOG.debug(f"スレッド停止")
 
             if IsDrawThread == False:
 
@@ -220,7 +216,8 @@ def main():
         DISPLAY.fill(0)  # 画面をクリア
         DISPLAY.show()
         STOP_EVENT.set()
-        THRED.join()
+        THRED.join() # スレッドの終了を待つ
+        STOP_EVENT.clear()
 
 if __name__ == "__main__":
 
