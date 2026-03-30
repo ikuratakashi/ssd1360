@@ -7,3 +7,5 @@ class clslog:
         print(f"[ERROR] {message}")
     def warning(self, message):
         print(f"[WARNING] {message}")
+    def debug(self, message):
+        print(f"[DEBUG] {message}")

@@ -174,6 +174,8 @@ def main():
 
             DrawFaceMode = CheckDrawFaceMode()
 
+            LOG.debug(f"DrawFaceMode: {DrawFaceMode}")
+
             if DrawFaceMode != BefDrawFaceMode and IsDrawThread == True:
                 STOP_EVENT.set()
                 THRED.join()
