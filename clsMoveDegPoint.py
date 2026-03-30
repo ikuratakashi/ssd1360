@@ -25,12 +25,15 @@ class clsMoveDegPoint:
             self.x = self.x + self.distance * math.cos(angle)
             self.y = self.y + self.distance * math.sin(angle)
 
+            self.x = int(self.x)
+            self.y = int(self.y)
+
             if(self.x > self.xmax or self.y > self.ymax):
                 self.x = self.st_x
                 self.y = self.st_y
 
             self.MovePointErase()
-            
+
         self.disp.line(self.x,self.y,self.x,self.y, 1)
 
         self.bef_x = self.x
