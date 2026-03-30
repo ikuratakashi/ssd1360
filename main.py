@@ -204,7 +204,7 @@ def main():
 
             BefDrawFaceMode = DrawFaceMode
 
-            sleep(3)
+            sleep(5)
 
     except KeyboardInterrupt:
         pass
