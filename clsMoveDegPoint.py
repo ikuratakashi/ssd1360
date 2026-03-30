@@ -31,8 +31,19 @@ class clsMoveDegPoint:
             self.y = int(self.y)
 
             if(self.x > self.xmax or self.y > self.ymax or self.x < 0 or self.y < 0):
-                self.x = 0
-                self.y = self.st_y
+                if self.deg == 0:
+                    self.x = 0
+                    self.y = self.st_y
+                elif self.deg == 180:
+                    self.x = self.xmax
+                    self.y = self.st_y
+                elif self.deg == 90:
+                    self.x = self.st_x
+                    self.y = self.ymax
+                else:
+                    self.x = self.st_x
+                    self.y = 0
+
 
             self.MovePointErase()
 
