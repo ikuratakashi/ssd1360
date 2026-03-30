@@ -55,6 +55,8 @@ def CheckDrawFaceMode() ->enmDrawFace:
     elif FaceNo == 2:
         result = random.choice([enmDrawFace.MoveRight, enmDrawFace.MoveLeft, enmDrawFace.MoveTop, enmDrawFace.MoveBottom])
 
+    result = enmDrawFace.MoveRight
+
     return result
 
 def FaceNomalDraw(pDrawMode : DrawMode = DrawMode.Draw):
