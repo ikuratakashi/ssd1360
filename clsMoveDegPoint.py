@@ -30,10 +30,7 @@ class clsMoveDegPoint:
             self.x = int(self.x)
             self.y = int(self.y)
 
-            if(self.x > self.xmax or self.y > self.ymax):
-                
-                self.LOG.debug(f"clear xy")
-                
+            if(self.x > self.xmax or self.y > self.ymax or self.x < 0 or self.y < 0):
                 self.x = self.st_x
                 self.y = self.st_y
 
