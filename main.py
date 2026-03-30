@@ -182,6 +182,7 @@ def main():
                 IsDrawThread = False
                 display.fill(0)
                 display.show()
+                LOG.debug(f"スレッド停止")
 
             if IsDrawThread == False:
 
