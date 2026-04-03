@@ -29,7 +29,7 @@ class clsMoveDegPoint:
 
             self.x = int(self.x)
             self.y = int(self.y)
-            
+
             if self.deg == 0:
                 if(self.x > self.xmax):
                     self.x = 0
@@ -39,11 +39,11 @@ class clsMoveDegPoint:
                     self.x = self.xmax
                     self.y = self.st_y
             elif self.deg == 90:
-                if(self.y < 0):
-                    self.x = self.st_x
-                    self.y = self.ymax
-            elif self.deg == 270:
                 if(self.y > self.ymax):
+                    self.x = self.st_x
+                    self.y = 0
+            elif self.deg == 270:
+                if(self.y < 0):
                     self.x = self.st_x
                     self.y = 0
 
