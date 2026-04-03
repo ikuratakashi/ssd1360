@@ -30,6 +30,9 @@ class enmDrawFace(Enum):
     MoveExLeft = 7
     MoveExTop = 8
     MoveExBottom = 9
+class enmDrawWowOrEx(Enum):
+    Wow = 1
+    Ex = 2
 
 def DrawFace(pDrawFace : enmDrawFace = enmDrawFace.Nomal):
     '''
@@ -41,7 +44,12 @@ def DrawFace(pDrawFace : enmDrawFace = enmDrawFace.Nomal):
          pDrawFace == enmDrawFace.MoveLeft or \
          pDrawFace == enmDrawFace.MoveTop or \
          pDrawFace == enmDrawFace.MoveBottom:
-        FaceWowGairoDraws(pDrawFace)
+        FaceWowOrExGairoDraws(pDrawFace, enmDrawWowOrEx.Wow)
+    elif pDrawFace == enmDrawFace.MoveExRight or \
+         pDrawFace == enmDrawFace.MoveExLeft or \
+            pDrawFace == enmDrawFace.MoveExTop or \
+            pDrawFace == enmDrawFace.MoveExBottom :
+        FaceWowOrExGairoDraws(pDrawFace, enmDrawWowOrEx.Ex)
 
 def CheckDrawFaceMode() ->enmDrawFace:
     '''
@@ -49,12 +57,14 @@ def CheckDrawFaceMode() ->enmDrawFace:
     '''
     result : enmDrawFace = enmDrawFace.MoveLeft
 
-    FaceNo = random.randint(1, 2)
+    FaceNo = random.randint(1, 3)
     if FaceNo == 1:
         result = enmDrawFace.Nomal
     elif FaceNo == 2:
         result = random.choice([enmDrawFace.MoveRight, enmDrawFace.MoveLeft, enmDrawFace.MoveTop, enmDrawFace.MoveBottom])
-
+    elif FaceNo == 3:
+        result = random.choice([enmDrawFace.MoveExRight, enmDrawFace.MoveExLeft, enmDrawFace.MoveExTop, enmDrawFace.MoveExBottom])
+        
     #result = enmDrawFace.MoveTop
 
     return result
@@ -144,7 +154,7 @@ def FaceWowDraw(pDrawMode : DrawMode = DrawMode.Draw):
     Draw.draw(pDrawMode)
     pass
 
-def FaceWowGairoDraws(pDrawFace : enmDrawFace):
+def FaceWowOrExGairoDraws(pDrawFace : enmDrawFace,pDrawWowOrEx : enmDrawWowOrEx = enmDrawWowOrEx.Wow):
     '''
     驚いた顔を描画する(ジャイロ方向描画あり)
     pDrawFace : 描画する顔の方向 
@@ -165,22 +175,44 @@ def FaceWowGairoDraws(pDrawFace : enmDrawFace):
     elif pDrawFace == enmDrawFace.MoveBottom:
         deg = 270
 
+    if pDrawWowOrEx == enmDrawWowOrEx.Ex:
+        distance = 5
+    else:
+        distance = 3
+
     for x in range(11):
         for y in range(6):
-            MoveDegPoints.append(clsMoveDegPoint(disp=DISPLAY,xmax=Xmax, ymax=Ymax, st_x=x * 17 + 1, st_y= y * 12 + 1, deg=deg, distance=3,Log=LOG))
+            MoveDegPoints.append(clsMoveDegPoint(disp=DISPLAY,xmax=Xmax, ymax=Ymax, st_x=x * 17 + 1, st_y= y * 12 + 1, deg=deg, distance=distance,Log=LOG))
 
     while STOP_EVENT.is_set() == False:
         
         for MoveDegPoint in MoveDegPoints:
             MoveDegPoint.MovePointDraw()
 
-        FaceWowDraw(DrawMode.Draw)
+        if pDrawWowOrEx == enmDrawWowOrEx.Wow:
+            FaceWowDraw(DrawMode.Draw)
+        else:
+            FaceWowExDraw(DrawMode.Draw)
 
         Show()
 
         sleep(0.001)
 
         pass
+    pass
+
+def FaceWowExDraw(pDrawMode : DrawMode = DrawMode.Draw):
+    '''
+    すごく驚いた顔を描画する
+    '''
+    face = clsFace()
+    bufs = face.WowEx()
+    Draw = clsDraw(DISPLAY)
+
+    for buf in bufs:
+        Draw.addLine(buf[0], buf[1], buf[2], buf[3], buf[4])
+
+    Draw.draw(pDrawMode)
     pass
 
 
@@ -231,9 +263,20 @@ def main():
                     '''
                     驚いた顔を描画する(ジャイロ方向描画あり)
                     '''
-                    THRED = threading.Thread(target=FaceWowGairoDraws, args=(DrawFaceMode,))
+                    THRED = threading.Thread(target=FaceWowOrExGairoDraws, args=(DrawFaceMode,enmDrawWowOrEx.Wow))
                     THRED.start()
                     IsDrawThread = True
+
+                if DrawFaceMode == enmDrawFace.MoveExRight or \
+                   DrawFaceMode == enmDrawFace.MoveExLeft or \
+                   DrawFaceMode == enmDrawFace.MoveExTop or \
+                     DrawFaceMode == enmDrawFace.MoveExBottom :
+                      '''
+                      すごく驚いた顔を描画する(ジャイロ方向描画あり)
+                      '''
+                      THRED = threading.Thread(target=FaceWowOrExGairoDraws, args=(DrawFaceMode,enmDrawWowOrEx.Ex))
+                      THRED.start()
+                      IsDrawThread = True
 
             BefDrawFaceMode = DrawFaceMode
 

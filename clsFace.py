@@ -61,3 +61,22 @@ class clsFace:
         result.append([68,48,63,51,1])
 
         return result
+    
+    def WowEx(self) -> list[clsLineData] :
+        '''すごく驚いた顔'''
+
+        result = []
+
+        # 目
+        result.append([40,10,48,16,1])
+        result.append([40,22,48,16,1])
+        result.append([86,10,48,16,1])
+        result.append([86,22,48,16,1])
+        
+        # 口
+        result.append([63,30,58,48,1])
+        result.append([63,30,68,48,1])
+        result.append([58,48,63,51,1])
+        result.append([68,48,63,51,1])
+
+        return result
