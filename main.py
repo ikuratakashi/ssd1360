@@ -64,7 +64,7 @@ def CheckDrawFaceMode() ->enmDrawFace:
         result = random.choice([enmDrawFace.MoveRight, enmDrawFace.MoveLeft, enmDrawFace.MoveTop, enmDrawFace.MoveBottom])
     elif FaceNo == 3:
         result = random.choice([enmDrawFace.MoveExRight, enmDrawFace.MoveExLeft, enmDrawFace.MoveExTop, enmDrawFace.MoveExBottom])
-        
+
     #result = enmDrawFace.MoveTop
 
     return result
@@ -166,13 +166,13 @@ def FaceWowOrExGairoDraws(pDrawFace : enmDrawFace,pDrawWowOrEx : enmDrawWowOrEx 
     Xmax = 173
     Ymax = 63
     MoveDegPoints:list[clsMoveDegPoint]  = []
-    if pDrawFace == enmDrawFace.MoveRight:
+    if pDrawFace == enmDrawFace.MoveRight or pDrawFace == enmDrawFace.MoveExRight:
         deg = 0
-    elif pDrawFace == enmDrawFace.MoveLeft:
+    elif pDrawFace == enmDrawFace.MoveLeft or pDrawFace == enmDrawFace.MoveExLeft:
         deg = 180
-    elif pDrawFace == enmDrawFace.MoveTop:
+    elif pDrawFace == enmDrawFace.MoveTop or pDrawFace == enmDrawFace.MoveExTop:
         deg = 90
-    elif pDrawFace == enmDrawFace.MoveBottom:
+    elif pDrawFace == enmDrawFace.MoveBottom or pDrawFace == enmDrawFace.MoveExBottom:
         deg = 270
 
     if pDrawWowOrEx == enmDrawWowOrEx.Ex:
