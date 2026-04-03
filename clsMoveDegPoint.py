@@ -51,7 +51,7 @@ class clsMoveDegPoint:
                 self.y = int(self.y)
                 if(self.y > self.ymax):
                     self.x = self.st_x
-                    self.y = 0
+                    self.y = self.ymax
             elif self.deg == 270:
                 self.x = self.x
                 self.y = self.y + self.distance
@@ -59,7 +59,7 @@ class clsMoveDegPoint:
                 self.y = int(self.y)
                 if(self.y < 0):
                     self.x = self.st_x
-                    self.y = self.ymax
+                    self.y = 0
 
             self.MovePointErase()
 
