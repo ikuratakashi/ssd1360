@@ -22,27 +22,41 @@ class clsMoveDegPoint:
     def MovePointDraw(self):
 
         if self.IsFirst == False:
-            angle = math.radians(self.deg)  # 度 → ラジアン
 
+            '''
+            angle = math.radians(self.deg)  # 度 → ラジアン
             self.x = self.x + self.distance * math.cos(angle)
             self.y = self.y + self.distance * math.sin(angle)
-
-            self.x = int(self.x)
-            self.y = int(self.y)
-
+            '''
             if self.deg == 0:
+                self.x = self.x + self.distance
+                self.y = self.y 
+                self.x = int(self.x)
+                self.y = int(self.y)
                 if(self.x > self.xmax):
                     self.x = 0
                     self.y = self.st_y
             elif self.deg == 180:
+                self.x = self.x - self.distance
+                self.y = self.y 
+                self.x = int(self.x)
+                self.y = int(self.y)
                 if(self.x < 0):
                     self.x = self.xmax
                     self.y = self.st_y
             elif self.deg == 90:
+                self.x = self.x
+                self.y = self.y - self.distance
+                self.x = int(self.x)
+                self.y = int(self.y)
                 if(self.y > self.ymax):
                     self.x = self.st_x
                     self.y = 0
             elif self.deg == 270:
+                self.x = self.x
+                self.y = self.y + self.distance
+                self.x = int(self.x)
+                self.y = int(self.y)
                 if(self.y < 0):
                     self.x = self.st_x
                     self.y = self.ymax
