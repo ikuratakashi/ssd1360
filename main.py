@@ -161,9 +161,9 @@ def FaceWowGairoDraws(pDrawFace : enmDrawFace):
     elif pDrawFace == enmDrawFace.MoveLeft:
         deg = 180
     elif pDrawFace == enmDrawFace.MoveTop:
-        deg = 270
-    elif pDrawFace == enmDrawFace.MoveBottom:
         deg = 90
+    elif pDrawFace == enmDrawFace.MoveBottom:
+        deg = 270
 
     for x in range(11):
         for y in range(6):
