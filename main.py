@@ -161,7 +161,10 @@ def FaceWowOrExGairoDraws(pDrawFace : enmDrawFace,pDrawWowOrEx : enmDrawWowOrEx 
     '''
     DISPLAY.fill(0)
     
-    FaceWowDraw(DrawMode.Draw)
+    if pDrawWowOrEx == enmDrawWowOrEx.Wow:
+        FaceWowDraw(DrawMode.Draw)
+    else:
+        FaceWowExDraw(DrawMode.Draw)
 
     Xmax = 173
     Ymax = 63
