@@ -176,7 +176,7 @@ def FaceWowOrExGairoDraws(pDrawFace : enmDrawFace,pDrawWowOrEx : enmDrawWowOrEx 
         deg = 270
 
     if pDrawWowOrEx == enmDrawWowOrEx.Ex:
-        distance = 5
+        distance = 6
     else:
         distance = 3
 
