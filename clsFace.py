@@ -74,8 +74,8 @@ class clsFace:
         result.append([86,22,78,16,1])
         
         # 口
-        result.append([63,30,58,48,1])
-        result.append([63,30,68,48,1])
+        result.append([63,35,58,48,1])
+        result.append([63,35,68,48,1])
         result.append([58,48,63,51,1])
         result.append([68,48,63,51,1])
 
