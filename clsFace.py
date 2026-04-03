@@ -70,8 +70,8 @@ class clsFace:
         # 目
         result.append([40,10,48,16,1])
         result.append([40,22,48,16,1])
-        result.append([86,10,48,16,1])
-        result.append([86,22,48,16,1])
+        result.append([86,10,78,16,1])
+        result.append([86,22,78,16,1])
         
         # 口
         result.append([63,30,58,48,1])
